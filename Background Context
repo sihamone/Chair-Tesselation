@@ -1,0 +1,49 @@
+Things to consider
+#guardamos la orientacion con -1 y 1 para -90 y 90 yyyy ese va a ser mi grado de mi matriz para rotar el shift
+
+necesito la matriz identidad cuando eleve la matriz a la 0 => t2^lista[2] => t2^0
+necesito la matriz 90 grados cuando eleve la matriz a la 1 => t2^lista[2] => t2^1
+necesito la matriz -90 grados cuando eleve la matriz a la -1 => t2^lista[2] => t2^-1
+Se aplcia el shift del padre a cada uno de ellos....entonces tienes que tomar la orientacion anterior no la nueva que está en cada tupla
+
+La matriz t2^0 = I
+
+La matriz t2^1 = t2
+
+La matriz t2^-1 = t1
+
+La matriz t2^2 = t3
+
+La matriz t2^-2 = t3
+
+La matriz t2^3 = t1
+
+La matriz t2^-3 = t2
+
+La matriz t2^4 = I
+
+La matriz t2^-4 = I
+
+La matriz t2^5 = t2
+
+La matriz t2^-5 = t1
+
+La matriz t2^6 = t3
+
+La matriz t2^-6 = t3
+
+La matriz t2^7 = t1
+
+La matriz t2^-7 = t2
+
+La matriz t2^8 = I
+
+La matriz t2^-8 = I
+
+La matriz t2^9 = t2
+
+La matriz t2^-9 = t1
+
+La matriz t2^10 = t3
+
+La matriz t2^-10= t3
