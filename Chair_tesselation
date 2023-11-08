@@ -1,0 +1,72 @@
+import matplotlib.pyplot as plt
+import numpy as np
+diccionario_listas = {'L0': 
+                      [(np.array([0, 0]), 0, 1)]
+                     }
+# Inicializa el diccionario con la primera lista
+vertices = [(0, 0), (2, 0), (2, 1), (1, 1), (1, 2), (0, 2),(0,0)]
+edges = []
+t1= np.array([[0, -1],[1, 0]]) #-90 grados
+t2= np.array([[0, 1], [-1, 0]])#90 grados
+t3= [[-1, 0],[0, -1]]
+​
+# Función que te agrega las aristas a la lista y las dibuja
+def add_edge(v1, v2,color='k-'):
+    edges.append((v1, v2))
+    plt.plot([v1[0], v2[0]], [v1[1], v2[1]], color)
+    #plt.axis('equal')
+​
+diccionario_listas = {'L0': 
+                      [(np.array([0, 0]), 0, 1)]
+                     }
+​
+# Número de iteraciones deseadas
+num_iteraciones = 6
+​
+odd_numbers =[2*i +1 for i in range(10)]
+pt2=[x if i %2==0 else -x for i, x in enumerate(odd_numbers)] #1,-3,5...  => t2
+pt1=[-x if i %2==0 else x for i, x in enumerate(odd_numbers)] #-1,3,-5... => t1
+​
+p2=[4*i for i in range(1,15)]
+p21=[-4*i for i in range(1,15)]
+​
+p3=[i for i in range(2,15,4)]
+p31=[-i for i in range(2,15,4)]
+​
+#2,1,.5,.25,.175    
+lista[1]
+for i in range(num_iteraciones):
+    sc =1/2**(i)
+    nueva_lista = []
+    for lista in diccionario_listas[f'L{i}']:
+        rot = np.linalg.matrix_power(t2, lista[1])
+        nueva_lista.append(((lista[0][0] , lista[0][1]), lista[1] + 0 , sc/2)) #p0
+        nueva_lista.append(((lista[0][0], lista[0][1]) + (sc/2,sc/2)@rot, lista[1] + 0, sc/2)) #p1
+        nueva_lista.append(((lista[0][0], lista[0][1]) + (2*sc,0)@rot, lista[1] + 1, sc/2)) #p2
+        nueva_lista.append(((lista[0][0], lista[0][1]) + (0, 2*sc)@rot, lista[1] - 1, sc/2)) #p3
+    
+        v_escalados = [(lista[2]* x , lista[2]* y) for x, y in vertices]
+        for j in range(len(v_escalados)-1):
+            add_edge(v_escalados[j], v_escalados[j + 1],'-')  
+        if lista[1] in pt2:
+            v_escalados2 = [((t1[0][0] * x + t1[0][1] * y)+lista[0][0], (t1[1][0] * x + t1[1][1] * y)+lista[0][1]) for x, y in v_escalados]
+            for m in range(len(v_escalados2)-1):
+                add_edge(v_escalados2[m], v_escalados2[m + 1],'-') 
+        if lista[1] in pt1:
+            v_escalados2 = [((t2[0][0] * x + t2[0][1] * y)+lista[0][0], (t2[1][0] * x + t2[1][1] * y)+lista[0][1]) for x, y in v_escalados]
+            for m in range(len(v_escalados2)-1):
+                add_edge(v_escalados2[m], v_escalados2[m + 1],'-') 
+        if lista[1] in p2 or lista[1] in p21 or lista[1]==0:
+            v_escalados2 = [(x +lista[0][0], y+lista[0][1]) for x, y in v_escalados]
+            #print(v_escalados2)
+            for m in range(len(v_escalados2)-1):
+                add_edge(v_escalados2[m], v_escalados2[m + 1],'-')
+        if lista[1] in p3 or lista[1] in p31:
+            v_escalados2 = [((t3[0][0] * x + t3[0][1] * y)+lista[0][0], (t3[1][0] * x + t3[1][1] * y)+lista[0][1]) for x, y in v_escalados]
+            #print(v_escalados2)
+            for m in range(len(v_escalados2)-1):
+                 add_edge(v_escalados2[m], v_escalados2[m + 1],'-')
+        
+        
+        
+    diccionario_listas[f'L{i+1}'] = nueva_lista
